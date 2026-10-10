@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Quiz | Afhamha</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f1f5fb;color:#172033;margin:0;line-height:1.7}
+header{background:#2457c5;color:white;text-align:center;padding:25px 12px}
+main{max-width:760px;margin:20px auto;padding:12px}
+.card,.question{background:white;border-radius:14px;padding:18px;margin-bottom:15px;box-shadow:0 3px 12px #0000000b}
+.question h3{font-size:18px;margin-top:0}
+label{display:block;padding:9px;margin:7px 0;border:1px solid #dce4f0;border-radius:9px;cursor:pointer}
+label:hover{background:#eef4ff}
+input{margin-right:8px;accent-color:#2457c5}
+button{background:#2457c5;color:white;border:0;border-radius:10px;padding:12px 20px;font-size:16px;cursor:pointer;margin:5px}
+#result{display:none}
+.good{color:#138052;font-weight:bold}
+.bad{color:#c22;font-weight:bold}
+.explain{color:#58657a;font-size:14px}
+</style>
+</head>
+<body>
+<header>
+<h1>🇬🇧 English Interactive Quiz</h1>
+<p>Afhamha | Grade 10 | Semester One</p>
+</header>
+
+<main>
+<section class="card">
+<h2>Welcome, Champion! 👋</h2>
+<p>Answer the ten questions, then click <b>Check Answers</b> to see your score and explanations.</p>
+<p class="explain">Practice quiz covering general English grammar, vocabulary, and reading skills. Check your current Omani textbook and teacher's plan to confirm the topics required for your semester.</p>
+</section>
+
+<form id="quiz">
+<div id="questions"></div>
+<button type="submit">Check Answers</button>
+<button type="button" onclick="resetQuiz()">Try Again</button>
+</form>
+
+<section class="card" id="result">
+<h2>Your Result 🎉</h2>
+<h2 id="score"></h2>
+<p id="message"></p>
+<div id="review"></div>
+</section>
+</main>
+
+<script>
+const questions = [
+{
+q:"1. Choose the correct sentence.",
+a:["She go to school every day.","She goes to school every day.","She going to school every day.","She gone to school every day."],
+c:1,
+e:"With he, she, or it in the present simple, we usually add -s or -es to the verb."
+},
+{
+q:"2. Complete: I _____ my homework yesterday.",
+a:["do","does","did","doing"],
+c:2,
+e:"Yesterday refers to the past, so use the past form did."
+},
+{
+q:"3. Choose the synonym of “happy”.",
+a:["Angry","Glad","Tired","Worried"],
+c:1,
+e:"Glad has a similar meaning to happy."
+},
+{
+q:"4. Complete: There _____ two books on the desk.",
+a:["is","are","was","be"],
+c:1,
+e:"Use are with a plural noun in the present tense."
+},
+{
+q:"5. Choose the correct comparative form: “A car is _____ than a bicycle.”",
+a:["fast","fastest","faster","more fast"],
+c:2,
+e:"For many short adjectives, add -er to form the comparative: faster."
+},
+{
+q:"6. Complete: If it rains, we _____ at home.",
+a:["stay","stayed yesterday","will stay","staying"],
+c:2,
+e:"A common first conditional pattern is If + present simple, will + base verb."
+},
+{
+q:"7. Choose the correct article: “She ate _____ apple.”",
+a:["a","an","the only possible answer is the","no article is always needed"],
+c:1,
+e:"Use an before a vowel sound. Apple begins with a vowel sound."
+},
+{
+q:"8. What does “borrow” mean?",
+a:["To give something forever","To take something for a time and return it","To break something","To buy something"],
+c:1,
+e:"Borrow means to take and use something temporarily, then return it."
+},
+{
+q:"9. Choose the correct question.",
+a:["Where you live?","Where does you live?","Where do you live?","Where living you?"],
+c:2,
+e:"For a present simple question with you, use Where + do + subject + base verb."
+},
+{
+q:"10. Read: “Maya plants flowers because she wants to help bees.” Why does Maya plant flowers?",
+a:["To help bees","To sell her house","To feed fish","To clean a classroom"],
+c:0,
+e:"The sentence directly states that Maya wants to help bees."
+}
+];
+
+const holder = document.getElementById("questions");
+
+questions.forEach((item,i)=>{
+ const section=document.createElement("section");
+ section.className="question";
+
+ const title=document.createElement("h3");
+ title.textContent=item.q;
+ section.appendChild(title);
+
+ item.a.forEach((answer,j)=>{
+  const label=document.createElement("label");
+  const radio=document.createElement("input");
+  radio.type="radio";
+  radio.name="q"+i;
+  radio.value=j;
+
+  const text=document.createElement("span");
+  text.textContent=answer;
+
+  label.appendChild(radio);
+  label.appendChild(text);
+  section.appendChild(label);
+ });
+
+ holder.appendChild(section);
+});
+
+document.getElementById("quiz").addEventListener("submit",function(event){
+ event.preventDefault();
+
+ let score=0;
+ const review=document.getElementById("review");
+ review.innerHTML="";
+
+ questions.forEach((item,i)=>{
+  const selected=document.querySelector('input[name="q'+i+'"]:checked');
+  const correct=selected && Number(selected.value)===item.c;
+
+  if(correct) score++;
+
+  const block=document.createElement("div");
+  block.className="card";
+
+  const status=document.createElement("p");
+  status.className=correct?"good":"bad";
+  status.textContent=correct?"✓ Correct!":"✗ Not quite.";
+
+  const answer=document.createElement("p");
+  answer.textContent="Correct answer: "+item.a[item.c];
+
+  const explain=document.createElement("p");
+  explain.className="explain";
+  explain.textContent=item.e;
+
+  block.append(status,answer,explain);
+  review.appendChild(block);
+ });
+
+ document.getElementById("score").textContent=score+" / "+questions.length;
+ document.getElementById("message").textContent=
+ score>=8?"Excellent work! Keep it up! 👏":
+ score>=5?"Good effort! Review the explanations and try again. 💪":
+ "Keep practising! Every attempt helps you improve. 🌱";
+
+ document.getElementById("result").style.display="block";
+ document.getElementById("result").scrollIntoView({behavior:"smooth"});
+});
+
+function resetQuiz(){
+ document.getElementById("quiz").reset();
+ document.getElementById("result").style.display="none";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+</body>
+</html>
