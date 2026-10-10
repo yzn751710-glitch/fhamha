@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اختبار اللغة العربية | افهمها</title>
+<style>
+body{font-family:Tahoma,Arial,sans-serif;background:#f1f5fb;color:#172033;margin:0;line-height:1.8}
+header{background:#2457c5;color:white;text-align:center;padding:25px 12px}
+main{max-width:760px;margin:20px auto;padding:12px}
+.card,.question{background:white;border-radius:14px;padding:18px;margin-bottom:15px;box-shadow:0 3px 12px #0000000b}
+.question h3{font-size:18px;margin-top:0}
+label{display:block;padding:9px;margin:7px 0;border:1px solid #dce4f0;border-radius:9px;cursor:pointer}
+label:hover{background:#eef4ff}
+input{margin-left:8px;accent-color:#2457c5}
+button{background:#2457c5;color:white;border:0;border-radius:10px;padding:12px 20px;font-size:16px;cursor:pointer;margin:5px}
+#result{display:none}
+.good{color:#138052;font-weight:bold}
+.bad{color:#c22;font-weight:bold}
+.explain{color:#58657a;font-size:14px}
+</style>
+</head>
+<body>
+<header>
+<h1>📝 اختبار اللغة العربية</h1>
+<p>افهمها | الصف العاشر | الفصل الدراسي الأول</p>
+</header>
+
+<main>
+<section class="card">
+<h2>أهلًا بك يا بطل! 👋</h2>
+<p>أجب عن الأسئلة ثم اضغط «تصحيح الاختبار» لتعرف نتيجتك والإجابات الصحيحة.</p>
+<p class="explain">تدريب مبدئي على مهارات لغوية وبلاغية وفهم النصوص. راجع كتابك المدرسي للتأكد من الموضوعات المقررة في فصلك الدراسي.</p>
+</section>
+
+<form id="quiz">
+<div id="questions"></div>
+<button type="submit">تصحيح الاختبار</button>
+<button type="button" onclick="resetQuiz()">إعادة المحاولة</button>
+</form>
+
+<section class="card" id="result">
+<h2>نتيجتك 🎉</h2>
+<h2 id="score"></h2>
+<p id="message"></p>
+<div id="review"></div>
+</section>
+</main>
+
+<script>
+const questions = [
+{
+q:"1. في جملة «عاد المسافر مسرورًا»، ما إعراب «مسرورًا»؟",
+a:["فاعل","حال منصوب","مبتدأ","مفعول به"],
+c:1,
+e:"الحال يبيّن هيئة صاحبه، و«مسرورًا» حال منصوب."
+},
+{
+q:"2. أي جملة تحتوي على تمييز؟",
+a:["قرأ الطالب الدرس","ازداد الطالب علمًا","جلس الطفل","عاد الأب"],
+c:1,
+e:"«علمًا» تمييز يوضح المقصود من الازدياد."
+},
+{
+q:"3. في جملة «دخلت الطالبة مبتسمةً»، ما الحال؟",
+a:["دخلت","الطالبة","مبتسمةً","لا يوجد حال"],
+c:2,
+e:"«مبتسمةً» توضّح هيئة الطالبة عند الدخول."
+},
+{
+q:"4. ما المقصود بالسجع؟",
+a:["تشابه أواخر الجمل في النغمة","ذكر قصة طويلة","السؤال عن شيء","تكرار حرف واحد فقط"],
+c:0,
+e:"السجع توافق أواخر الجمل في النثر في الحرف أو النغمة."
+},
+{
+q:"5. أي عبارة تتضمن سجعًا واضحًا؟",
+a:["الشمس مشرقة اليوم","من جدّ وجد، ومن زرع حصد","ذهبت إلى المدرسة","الكتاب فوق الطاولة"],
+c:1,
+e:"تتوافق نهايتا «وجد» و«حصد» في الإيقاع."
+},
+{
+q:"6. ما الفكرة الرئيسة للنص؟",
+a:["تفصيل صغير فقط","الموضوع الأساسي الذي يدور حوله النص","عدد كلمات النص","اسم الكاتب فقط"],
+c:1,
+e:"الفكرة الرئيسة هي المعنى الأساسي الذي يعالجه النص."
+},
+{
+q:"7. ما أفضل طريقة لفهم نص أدبي؟",
+a:["قراءة العنوان والنص بعناية","تجاهل النص","قراءة آخر كلمة فقط","حفظ علامات الترقيم فقط"],
+c:0,
+e:"يساعد العنوان والقراءة المتأنية على فهم الموضوع والأفكار."
+},
+{
+q:"8. في عبارة «اشتعل الرأس شيبًا»، ما إعراب «شيبًا»؟",
+a:["فاعل","حال","تمييز نسبة","مفعول به"],
+c:2,
+e:"«شيبًا» تمييز نسبة يوضح المقصود من اشتعال الرأس."
+},
+{
+q:"9. ما معنى مرادف الكلمة؟",
+a:["كلمة لها معنى قريب","كلمة عكسها تمامًا","حرف جر","علامة ترقيم"],
+c:0,
+e:"المرادف كلمة تشارك كلمة أخرى في المعنى أو تقاربه."
+},
+{
+q:"10. ما الذي يساعد على استنتاج مشاعر الكاتب تجاه وطنه؟",
+a:["تجاهل الكلمات","الألفاظ والصور والمعاني التي يستخدمها","عدّ الأسطر فقط","النظر إلى حجم الخط"],
+c:1,
+e:"اختيار الكاتب للألفاظ والصور يساعد على فهم مشاعره وموقفه."
+}
+];
+
+const holder = document.getElementById("questions");
+
+questions.forEach((item,i)=>{
+ const section=document.createElement("section");
+ section.className="question";
+
+ const title=document.createElement("h3");
+ title.textContent=item.q;
+ section.appendChild(title);
+
+ item.a.forEach((answer,j)=>{
+  const label=document.createElement("label");
+  const radio=document.createElement("input");
+  radio.type="radio";
+  radio.name="q"+i;
+  radio.value=j;
+
+  const text=document.createElement("span");
+  text.textContent=answer;
+
+  label.appendChild(radio);
+  label.appendChild(text);
+  section.appendChild(label);
+ });
+
+ holder.appendChild(section);
+});
+
+document.getElementById("quiz").addEventListener("submit",function(event){
+ event.preventDefault();
+
+ let score=0;
+ const review=document.getElementById("review");
+ review.innerHTML="";
+
+ questions.forEach((item,i)=>{
+  const selected=document.querySelector('input[name="q'+i+'"]:checked');
+  const correct=selected && Number(selected.value)===item.c;
+
+  if(correct) score++;
+
+  const block=document.createElement("div");
+  block.className="card";
+
+  const status=document.createElement("p");
+  status.className=correct?"good":"bad";
+  status.textContent=correct?"✓ إجابة صحيحة":"✗ إجابة غير صحيحة";
+
+  const answer=document.createElement("p");
+  answer.textContent="الإجابة الصحيحة: "+item.a[item.c];
+
+  const explain=document.createElement("p");
+  explain.className="explain";
+  explain.textContent=item.e;
+
+  block.append(status,answer,explain);
+  review.appendChild(block);
+ });
+
+ document.getElementById("score").textContent=score+" من "+questions.length;
+ document.getElementById("message").textContent=
+ score>=8?"ممتاز! أحسنت يا بطل 👏":
+ score>=5?"جيد! راجع الإجابات وحاول مجددًا 💪":
+ "واصل التدريب، فكل محاولة تساعدك على التعلّم 🌱";
+
+ document.getElementById("result").style.display="block";
+ document.getElementById("result").scrollIntoView({behavior:"smooth"});
+});
+
+function resetQuiz(){
+ document.getElementById("quiz").reset();
+ document.getElementById("result").style.display="none";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+</body>
+</html>
