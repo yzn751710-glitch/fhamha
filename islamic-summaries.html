@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>افهمها | مكتبة التربية الإسلامية للصف العاشر</title>
+<style>
+:root{--green:#087f5b;--dark:#164e3d;--bg:#f2f8f5}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#20332d;line-height:1.9}
+header{background:linear-gradient(135deg,#065f46,#10a371);color:white;text-align:center;padding:32px 16px}
+header h1{margin:0;font-size:32px}
+header p{margin:8px 0}
+main{max-width:1000px;margin:auto;padding:18px}
+.panel{background:white;border-radius:16px;padding:20px;margin:16px 0;box-shadow:0 4px 14px #0000000b}
+h2,h3{color:var(--green)}
+input[type=search]{width:100%;padding:13px;border:1px solid #cbded3;border-radius:10px;font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.unit{background:#fff;border:1px solid #dcebe2;border-radius:14px;padding:16px}
+.unit h3{margin-top:0}
+button,.link{display:inline-block;background:var(--green);color:white;border:0;border-radius:9px;padding:10px 14px;text-decoration:none;cursor:pointer;font-size:15px;margin:4px 0}
+.secondary{background:#e7f4ed;color:#075b42}
+.lesson{border-top:1px solid #e5eee8;padding:12px 0}
+.small{font-size:14px;color:#63766c}
+.question{padding:12px 0;border-bottom:1px solid #e5eee8}
+label{display:block;margin:7px 0;cursor:pointer}
+#result{font-weight:bold;color:var(--green)}
+footer{text-align:center;padding:24px;color:#65776e}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header>
+<h1>📚 افهمها</h1>
+<p>مكتبة التربية الإسلامية — الصف العاشر</p>
+<p>سلطنة عُمان | افهم الدرس، ثم اختبر نفسك</p>
+</header>
+
+<main>
+<section class="panel">
+<h2>🔎 ابحث عن درس</h2>
+<input id="search" type="search" placeholder="اكتب اسم الدرس أو الوحدة..." aria-label="البحث عن درس">
+<p class="small">اختر الوحدة لعرض موضوعاتها. راجع عنوان الدرس وتفاصيله في كتابك المدرسي قبل الاعتماد عليه في الاختبار.</p>
+</section>
+
+<section class="panel">
+<h2>📗 وحدات الكتاب</h2>
+<div class="grid" id="units">
+<article class="unit" data-search="الوحدة الأولى التلاوة التجويد الحشر الإدغام الإخفاء الإظهار القلب التفخيم الترقيق">
+<h3>الوحدة الأولى: التلاوة والتجويد</h3>
+<div class="lesson">تلاوة سورة الحشر وحفظها</div>
+<div class="lesson">الإدغام والإخفاء</div>
+<div class="lesson">الإظهار والقلب</div>
+<div class="lesson">التفخيم والترقيق (1)</div>
+<div class="lesson">التفخيم والترقيق (2)</div>
+</article>
+
+<article class="unit" data-search="الوحدة الثانية العقيدة خاتم النبيين قيم رسخها الأنبياء يوسف الرسالة الخاتمة">
+<h3>الوحدة الثانية: العقيدة</h3>
+<div class="lesson">خاتم النبيين ﷺ</div>
+<div class="lesson">قيم رسخها الأنبياء والرسل: يوسف عليه السلام نموذجًا</div>
+<div class="lesson">الرسالة الخاتمة</div>
+<a class="link" href="islamic-unit2.html">افتح شرح الوحدة الثانية</a>
+</article>
+
+<article class="unit" data-search="الوحدة الثالثة الفقه الذكاة الشرعية النذر الهدية القرض الحسن">
+<h3>الوحدة الثالثة: الفقه</h3>
+<div class="lesson">الذكاة الشرعية</div>
+<div class="lesson">النذر</div>
+<div class="lesson">الهدية</div>
+<div class="lesson">القرض الحسن</div>
+</article>
+
+<article class="unit" data-search="الوحدة الرابعة الحقوق الواجبات الحياة ذوو الإعاقة التملك">
+<h3>الوحدة الرابعة: الحقوق والواجبات</h3>
+<div class="lesson">الحقوق والواجبات في ميزان الإسلام</div>
+<div class="lesson">حق الحياة</div>
+<div class="lesson">حقوق ذوي الإعاقة</div>
+<div class="lesson">حق التملك</div>
+</article>
+
+<article class="unit" data-search="الوحدة الخامسة السيرة النبوية عمرة القضاء فتح مكة حجة الوداع وفاة الرسول">
+<h3>الوحدة الخامسة: السيرة النبوية</h3>
+<div class="lesson">عمرة القضاء</div>
+<div class="lesson">فتح مكة</div>
+<div class="lesson">وصايا نبوية من حجة الوداع</div>
+<div class="lesson">وفاة الرسول ﷺ</div>
+</article>
+
+<article class="unit" data-search="الوحدة السادسة تاريخ التشريع الإسلامي عهد الرسول مقاصد الشريعة فقه النوازل">
+<h3>الوحدة السادسة: تاريخ التشريع الإسلامي</h3>
+<div class="lesson">التشريع في عهد الرسول ﷺ</div>
+<div class="lesson">من مقاصد الشريعة</div>
+<div class="lesson">صور من فقه النوازل</div>
+</article>
+</div>
+<p id="noResults" hidden>لم نعثر على نتيجة. جرّب كلمة أخرى.</p>
+</section>
+
+<section class="panel">
+<h2>📖 الكتاب المدرسي الرسمي</h2>
+<p>استخدم الكتاب للتحقق من نصوص الآيات والأحاديث والتعريفات وأسماء الدروس والتفاصيل المطلوبة في المنهج.</p>
+<a class="link" href="https://ict.moe.gov.om/book/PDF/10/Islamic_g10p1_Classical/index.html" target="_blank" rel="noopener">كتاب التربية الإسلامية — الفصل الأول</a>
+<a class="link secondary" href="https://ict.moe.gov.om/book/PDF/10/Islamic_g10p2/index.html" target="_blank" rel="noopener">كتاب التربية الإسلامية — الجزء الثاني</a>
+</section>
+
+<section class="panel">
+<h2>🧠 اختبار مراجعة سريع</h2>
+<p>اختر الإجابة الصحيحة لكل سؤال، ثم اضغط «تصحيح».</p>
+<form id="quiz">
+<div class="question">
+<p>1. ما حكم النون الساكنة أو التنوين عند مجيء حرف الباء؟</p>
+<label><input type="radio" name="q0" value="0"> الإظهار</label>
+<label><input type="radio" name="q0" value="1"> الإقلاب</label>
+<label><input type="radio" name="q0" value="2"> الإدغام</label>
+</div>
+<div class="question">
+<p>2. أي سلوك يدل على العدل؟</p>
+<label><input type="radio" name="q1" value="0"> إعطاء كل ذي حق حقه</label>
+<label><input type="radio" name="q1" value="1"> تفضيل الصديق دون حق</label>
+<label><input type="radio" name="q1" value="2"> اتباع الهوى</label>
+</div>
+<div class="question">
+<p>3. ما المقصود بالقرض الحسن بصورة عامة؟</p>
+<label><input type="radio" name="q2" value="0"> مساعدة المحتاج بقرض مشروع دون اشتراط منفعة ربوية</label>
+<label><input type="radio" name="q2" value="1"> أخذ مال الناس دون إذن</label>
+<label><input type="radio" name="q2" value="2"> بيع كل شيء بثمن مجهول</label>
+</div>
+<div class="question">
+<p>4. أين نتحقق من نصوص الدروس المطلوبة للاختبار؟</p>
+<label><input type="radio" name="q3" value="0"> من التخمين فقط</label>
+<label><input type="radio" name="q3" value="1"> من الكتاب المدرسي المعتمد</label>
+<label><input type="radio" name="q3" value="2"> من أي مصدر دون مراجعة</label>
+</div>
+<button type="button" onclick="gradeQuiz()">تصحيح الإجابات</button>
+<button type="reset" class="secondary" onclick="document.getElementById('result').textContent=''">إعادة الاختبار</button>
+</form>
+<p id="result" aria-live="polite"></p>
+</section>
+
+<section class="panel">
+<a class="link" href="index.html">← العودة إلى الصفحة الرئيسية</a>
+</section>
+</main>
+
+<footer>افهمها — طريقك إلى فهم الدروس، لا حفظها فقط 🌱</footer>
+
+<script>
+const search = document.getElementById('search');
+const units = [...document.querySelectorAll('.unit')];
+search.addEventListener('input', () => {
+  const term = search.value.trim().toLowerCase();
+  let count = 0;
+  units.forEach(unit => {
+    const match = unit.innerText.toLowerCase().includes(term) ||
+                  unit.dataset.search.includes(term);
+    unit.hidden = !match;
+    if (match) count++;
+  });
+  document.getElementById('noResults').hidden = count !== 0;
+});
+function gradeQuiz() {
+  const answers = [1,0,0,1];
+  let score = 0, missing = 0;
+  answers.forEach((answer,i) => {
+    const selected = document.querySelector('input[name="q'+i+'"]:checked');
+    if (!selected) missing++;
+    else if (Number(selected.value) === answer) score++;
+  });
+  const result = document.getElementById('result');
+  if (missing) {
+    result.textContent = 'أجب عن الأسئلة الأربعة أولًا. الأسئلة المتبقية: ' + missing;
+    return;
+  }
+  result.textContent = 'نتيجتك: ' + score + ' من ' + answers.length +
+    (score === 4 ? ' — ممتاز! أحسنت.' : ' — راجع دروسك وحاول مرة أخرى.');
+}
+</script>
+</body>
+</html>
