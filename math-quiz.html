@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>افهمها | اختبار الرياضيات</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f0f4ff;color:#172554;margin:0;padding:20px}
+main{max-width:750px;margin:auto;background:white;padding:24px;border-radius:18px;box-shadow:0 4px 18px #ccd5eb}
+h1{color:#2457c5;text-align:center}
+.intro{text-align:center;color:#475569}
+.question{padding:16px;margin:16px 0;background:#f8fafc;border:1px solid #dbeafe;border-radius:12px}
+label{display:block;padding:9px;cursor:pointer}
+button{background:#2457c5;color:white;border:0;border-radius:10px;padding:12px 20px;cursor:pointer;font-size:16px}
+#result{font-size:20px;font-weight:bold;margin-top:18px}
+</style>
+</head>
+<body>
+<main>
+<h1>📘 افهمها | اختبار الرياضيات</h1>
+<p class="intro">الصف العاشر — اختبار تدريبي تجريبي</p>
+<p>اختر إجابة واحدة لكل سؤال، ثم اضغط «تصحيح الاختبار».</p>
+<form id="quiz">
+<div id="questions"></div>
+<button type="submit">تصحيح الاختبار</button>
+</form>
+<div id="result" aria-live="polite"></div>
+</main>
+<script>
+const qs=[
+["إذا كان 3س = 18، فما قيمة س؟",["3","6","9","15"],1],
+["ما قيمة 2² + 3؟",["5","7","8","12"],1],
+["ما ميل المستقيم ص = 2س + 1؟",["1","2","3","-2"],1],
+["ما ناتج 5 × (2 + 1)؟",["11","13","15","10"],2],
+["ما قيمة 12 ÷ 3؟",["3","4","6","9"],1],
+["إذا كان س + 7 = 10، فإن س يساوي:",["2","3","7","17"],1],
+["ما العدد التالي: 2، 4، 6، 8، ...؟",["9","10","11","12"],1],
+["ما متوسط العددين 4 و 8؟",["4","5","6","8"],2],
+["أي نقطة تقع على محور السينات؟",["(0,3)","(2,0)","(1,1)","(3,2)"],1],
+["ما ناتج 3س + 2س؟",["5","5س","6س","س²"],1]
+];
+const root=document.getElementById("questions");
+qs.forEach((q,i)=>{
+const box=document.createElement("section");
+box.className="question";
+const title=document.createElement("p");
+title.textContent=(i+1)+". "+q[0];
+box.appendChild(title);
+q[1].forEach((option,j)=>{
+const label=document.createElement("label");
+const radio=document.createElement("input");
+radio.type="radio";
+radio.name="q"+i;
+radio.value=j;
+label.appendChild(radio);
+label.appendChild(document.createTextNode(" "+option));
+box.appendChild(label);
+});
+root.appendChild(box);
+});
+document.getElementById("quiz").addEventListener("submit",function(e){
+e.preventDefault();
+let score=0,answered=0;
+qs.forEach((q,i)=>{
+const selected=document.querySelector('input[name="q'+i+'"]:checked');
+if(selected){answered++;if(Number(selected.value)===q[2])score++;}
+});
+document.getElementById("result").textContent=
+"نتيجتك: "+score+" من "+qs.length+" — أجبت عن "+answered+" من 10 أسئلة.";
+});
+</script>
+</body>
+</html>
