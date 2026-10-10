@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اختبار الأحياء | افهمها</title>
+<style>
+body{font-family:Tahoma,Arial,sans-serif;background:#f1f5fb;color:#172033;margin:0;line-height:1.8}
+header{background:linear-gradient(135deg,#14532d,#0d9488);color:white;text-align:center;padding:25px 12px}
+main{max-width:760px;margin:20px auto;padding:12px}
+.card,.question{background:white;border-radius:14px;padding:18px;margin-bottom:15px;box-shadow:0 3px 12px #0000000b}
+.question h3{font-size:18px;margin-top:0}
+label{display:block;padding:9px;margin:7px 0;border:1px solid #dce4f0;border-radius:9px;cursor:pointer}
+label:hover{background:#ecfdf5}
+input{margin-left:8px;accent-color:#0d9488}
+button{background:#0d9488;color:white;border:0;border-radius:10px;padding:12px 20px;font-size:16px;cursor:pointer;margin:5px}
+#result{display:none}
+.good{color:#138052;font-weight:bold}
+.bad{color:#c22;font-weight:bold}
+.explain{color:#58657a;font-size:14px}
+</style>
+</head>
+<body>
+<header>
+<h1>🧬 اختبار الأحياء</h1>
+<p>افهمها | الصف العاشر | الفصل الدراسي الأول</p>
+</header>
+<main>
+<section class="card">
+<h2>مرحبًا بك في عالم الحياة! 🌱</h2>
+<p>أجب عن الأسئلة العشرة، ثم اضغط «تصحيح الاختبار» لمعرفة نتيجتك وشرح الإجابات.</p>
+<p class="explain">هذا تدريب عام في الأحياء، وليس تأكيدًا لمطابقة جميع موضوعات كتاب الفصل الأول العُماني الحالي. راجع فهرس كتابك وخطة معلمك.</p>
+</section>
+<form id="quiz">
+<div id="questions"></div>
+<button type="submit">تصحيح الاختبار</button>
+<button type="button" onclick="resetQuiz()">إعادة المحاولة</button>
+</form>
+<section class="card" id="result">
+<h2>نتيجتك 🎉</h2>
+<h2 id="score"></h2>
+<p id="message"></p>
+<div id="review"></div>
+</section>
+</main>
+<script>
+const questions = [
+{q:"1. ما الوحدة الأساسية لبناء أجسام الكائنات الحية؟",a:["الخلية","النسيج","العضو","الجهاز"],c:0,e:"الخلية هي الوحدة الأساسية للتركيب والوظيفة في الكائنات الحية."},
+{q:"2. ما الجزء الذي يتحكم في معظم أنشطة الخلية؟",a:["الغشاء الخلوي","النواة","الفجوة","الجدار الخلوي"],c:1,e:"تحتوي النواة على المادة الوراثية وتؤدي دورًا رئيسيًا في تنظيم أنشطة الخلية."},
+{q:"3. ما وظيفة الغشاء الخلوي؟",a:["إنتاج ضوء الشمس","التحكم في مرور المواد من الخلية وإليها","حمل الأكسجين في الدم فقط","صنع التربة"],c:1,e:"ينظم الغشاء الخلوي دخول المواد إلى الخلية وخروجها."},
+{q:"4. أي تركيب يوجد في الخلايا النباتية ويساعد على البناء الضوئي؟",a:["البلاستيدات الخضراء","الأهداب فقط","العظام","الأعصاب"],c:0,e:"تحتوي البلاستيدات الخضراء على الكلوروفيل الذي يمتص الضوء للبناء الضوئي."},
+{q:"5. ما الغاز الذي تمتصه النباتات في عملية البناء الضوئي؟",a:["الأكسجين","النيتروجين","ثاني أكسيد الكربون","الهيدروجين فقط"],c:2,e:"تستخدم النباتات ثاني أكسيد الكربون والماء والطاقة الضوئية لصنع الغذاء."},
+{q:"6. ما الوظيفة الأساسية لكريات الدم الحمراء؟",a:["نقل الأكسجين","هضم الطعام","إنتاج العصارة الصفراوية","تكوين العظام"],c:0,e:"تحتوي كريات الدم الحمراء على الهيموغلوبين الذي يساعد على نقل الأكسجين."},
+{q:"7. ماذا يسمى انتقال الصفات من الآباء إلى الأبناء؟",a:["التبخر","الوراثة","التكاثف","الترشيح"],c:1,e:"الوراثة هي انتقال المعلومات والصفات الوراثية من جيل إلى آخر."},
+{q:"8. ما مصدر الطاقة الأساسي لمعظم السلاسل الغذائية؟",a:["القمر","الشمس","الصخور","التربة وحدها"],c:1,e:"تلتقط المنتجات مثل النباتات الطاقة من ضوء الشمس وتحوّلها إلى طاقة كيميائية."},
+{q:"9. أي مما يأتي يمثل كائنًا منتجًا في النظام البيئي؟",a:["عشب أخضر","أسد","فطر محلل فقط","أرنب يتغذى على النباتات"],c:0,e:"النباتات الخضراء تصنع غذاءها بالبناء الضوئي، لذا تُعد منتجات."},
+{q:"10. ما وظيفة الجهاز التنفسي الأساسية؟",a:["تبادل الغازات بين الجسم والبيئة","ضخ الدم وحده","هضم البروتينات","تكوين العظام"],c:0,e:"يساعد الجهاز التنفسي على إدخال الأكسجين والتخلص من ثاني أكسيد الكربون."}
+];
+const holder=document.getElementById("questions");
+questions.forEach((item,i)=>{
+ const section=document.createElement("section");section.className="question";
+ const title=document.createElement("h3");title.textContent=item.q;section.appendChild(title);
+ item.a.forEach((answer,j)=>{
+  const label=document.createElement("label");
+  const radio=document.createElement("input");radio.type="radio";radio.name="q"+i;radio.value=j;
+  const span=document.createElement("span");span.textContent=answer;
+  label.append(radio,span);section.appendChild(label);
+ });
+ holder.appendChild(section);
+});
+document.getElementById("quiz").addEventListener("submit",function(event){
+ event.preventDefault();let score=0;
+ const review=document.getElementById("review");review.innerHTML="";
+ questions.forEach((item,i)=>{
+  const selected=document.querySelector('input[name="q'+i+'"]:checked');
+  const correct=selected && Number(selected.value)===item.c;
+  if(correct)score++;
+  const block=document.createElement("div");block.className="card";
+  const status=document.createElement("p");status.className=correct?"good":"bad";
+  status.textContent=correct?"✓ إجابة صحيحة":"✗ إجابة غير صحيحة";
+  const answer=document.createElement("p");answer.textContent="الإجابة الصحيحة: "+item.a[item.c];
+  const explain=document.createElement("p");explain.className="explain";explain.textContent=item.e;
+  block.append(status,answer,explain);review.appendChild(block);
+ });
+ document.getElementById("score").textContent=score+" من "+questions.length;
+ document.getElementById("message").textContent=score>=8?"ممتاز! أحسنت 👏":score>=5?"أداء جيد! راجع الشرح وحاول مجددًا 💪":"واصل التدريب، فكل محاولة تقرّبك من الفهم 🌱";
+ document.getElementById("result").style.display="block";
+ document.getElementById("result").scrollIntoView({behavior:"smooth"});
+});
+function resetQuiz(){
+ document.getElementById("quiz").reset();
+ document.getElementById("result").style.display="none";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+</body>
+</html>
