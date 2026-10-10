@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اختبار الفيزياء | افهمها</title>
+<style>
+body{font-family:Tahoma,Arial,sans-serif;background:#f1f5fb;color:#172033;margin:0;line-height:1.8}
+header{background:linear-gradient(135deg,#183153,#2457c5);color:white;text-align:center;padding:25px 12px}
+main{max-width:760px;margin:20px auto;padding:12px}
+.card,.question{background:white;border-radius:14px;padding:18px;margin-bottom:15px;box-shadow:0 3px 12px #0000000b}
+.question h3{font-size:18px;margin-top:0}
+label{display:block;padding:9px;margin:7px 0;border:1px solid #dce4f0;border-radius:9px;cursor:pointer}
+label:hover{background:#eef4ff}
+input{margin-left:8px;accent-color:#2457c5}
+button{background:#2457c5;color:white;border:0;border-radius:10px;padding:12px 20px;font-size:16px;cursor:pointer;margin:5px}
+button:hover{filter:brightness(.95)}
+#result{display:none}
+.good{color:#138052;font-weight:bold}
+.bad{color:#c22;font-weight:bold}
+.explain{color:#58657a;font-size:14px}
+</style>
+</head>
+<body>
+<header>
+<h1>⚛️ اختبار الفيزياء</h1>
+<p>افهمها | الصف العاشر | الفصل الدراسي الأول</p>
+</header>
+
+<main>
+<section class="card">
+<h2>أهلًا بك أيها العالم الصغير! 🔬</h2>
+<p>أجب عن الأسئلة العشرة، ثم اضغط «تصحيح الاختبار» لمعرفة نتيجتك وشرح الإجابات.</p>
+<p class="explain">هذا اختبار تدريبي عام في مفاهيم الفيزياء. راجع فهرس كتاب الفيزياء العُماني الحالي للتأكد من مطابقة الموضوعات للمقرر المطلوب.</p>
+</section>
+
+<form id="quiz">
+<div id="questions"></div>
+<button type="submit">تصحيح الاختبار</button>
+<button type="button" onclick="resetQuiz()">إعادة المحاولة</button>
+</form>
+
+<section class="card" id="result">
+<h2>نتيجتك 🎉</h2>
+<h2 id="score"></h2>
+<p id="message"></p>
+<div id="review"></div>
+</section>
+</main>
+
+<script>
+const questions = [
+{
+q:"1. ما وحدة قياس القوة في النظام الدولي؟",
+a:["الكيلوغرام","النيوتن","المتر","الثانية"],
+c:1,
+e:"تقاس القوة بوحدة النيوتن (N)."
+},
+{
+q:"2. قطع جسم مسافة 100 متر خلال 20 ثانية. ما سرعته المتوسطة؟",
+a:["2 م/ث","5 م/ث","20 م/ث","200 م/ث"],
+c:1,
+e:"السرعة المتوسطة = المسافة ÷ الزمن = 100 ÷ 20 = 5 م/ث."
+},
+{
+q:"3. ما وحدة قياس الكتلة؟",
+a:["النيوتن","المتر","الكيلوغرام","المتر/ثانية"],
+c:2,
+e:"وحدة قياس الكتلة في النظام الدولي هي الكيلوغرام (kg)."
+},
+{
+q:"4. أي أداة تُستخدم لقياس درجة الحرارة؟",
+a:["الميزان","الترمومتر","المسطرة","ساعة الإيقاف"],
+c:1,
+e:"يستخدم الترمومتر لقياس درجة الحرارة."
+},
+{
+q:"5. ماذا يحدث لسرعة جسم عندما تؤثر فيه قوة محصلة في اتجاه حركته؟",
+a:["تزداد سرعته عادةً","تتوقف كتلته","تختفي الجاذبية","لا يمكن أن تتغير حركته"],
+c:0,
+e:"القوة المحصلة قد تسبب تسارع الجسم، فتزداد سرعته إذا كانت في اتجاه حركته."
+},
+{
+q:"6. أي مما يأتي يُعد مصدرًا للطاقة المتجددة؟",
+a:["الفحم","النفط","الغاز الطبيعي","ضوء الشمس"],
+c:3,
+e:"تُعد الطاقة الشمسية مصدرًا متجددًا للطاقة."
+},
+{
+q:"7. ما المقصود بكثافة مادة؟",
+a:["كتلتها لكل وحدة حجم","المسافة التي تقطعها","درجة حرارتها فقط","الزمن اللازم لحركتها"],
+c:0,
+e:"الكثافة = الكتلة ÷ الحجم."
+},
+{
+q:"8. جسم كتلته 2 kg وحجمه 1 m³. ما كثافته؟",
+a:["0.5 kg/m³","1 kg/m³","2 kg/m³","3 kg/m³"],
+c:2,
+e:"الكثافة = 2 ÷ 1 = 2 kg/m³."
+},
+{
+q:"9. في دائرة كهربائية بسيطة، ما وظيفة المفتاح؟",
+a:["زيادة كتلة البطارية","فتح الدائرة أو إغلاقها","قياس طول السلك","تحويل السلك إلى مغناطيس دائم"],
+c:1,
+e:"يسمح المفتاح بفتح الدائرة الكهربائية أو إغلاقها للتحكم في مرور التيار."
+},
+{
+q:"10. ما وحدة قياس الطاقة في النظام الدولي؟",
+a:["الجول","الأمبير","النيوتن","الكيلوغرام"],
+c:0,
+e:"تقاس الطاقة بوحدة الجول (J)."
+}
+];
+
+const holder = document.getElementById("questions");
+
+questions.forEach((item,i)=>{
+ const section=document.createElement("section");
+ section.className="question";
+
+ const title=document.createElement("h3");
+ title.textContent=item.q;
+ section.appendChild(title);
+
+ item.a.forEach((answer,j)=>{
+  const label=document.createElement("label");
+  const radio=document.createElement("input");
+  radio.type="radio";
+  radio.name="q"+i;
+  radio.value=j;
+
+  const text=document.createElement("span");
+  text.textContent=answer;
+
+  label.appendChild(radio);
+  label.appendChild(text);
+  section.appendChild(label);
+ });
+
+ holder.appendChild(section);
+});
+
+document.getElementById("quiz").addEventListener("submit",function(event){
+ event.preventDefault();
+
+ let score=0;
+ const review=document.getElementById("review");
+ review.innerHTML="";
+
+ questions.forEach((item,i)=>{
+  const selected=document.querySelector('input[name="q'+i+'"]:checked');
+  const correct=selected && Number(selected.value)===item.c;
+
+  if(correct) score++;
+
+  const block=document.createElement("div");
+  block.className="card";
+
+  const status=document.createElement("p");
+  status.className=correct?"good":"bad";
+  status.textContent=correct?"✓ إجابة صحيحة":"✗ إجابة غير صحيحة";
+
+  const answer=document.createElement("p");
+  answer.textContent="الإجابة الصحيحة: "+item.a[item.c];
+
+  const explain=document.createElement("p");
+  explain.className="explain";
+  explain.textContent=item.e;
+
+  block.append(status,answer,explain);
+  review.appendChild(block);
+ });
+
+ document.getElementById("score").textContent=score+" من "+questions.length;
+ document.getElementById("message").textContent=
+ score>=8?"ممتاز! لديك فهم جيد للمفاهيم 👏":
+ score>=5?"جيد! راجع الشرح وحاول مرة أخرى 💪":
+ "لا تستسلم! راجع الإجابات وتدرّب من جديد 🌱";
+
+ document.getElementById("result").style.display="block";
+ document.getElementById("result").scrollIntoView({behavior:"smooth"});
+});
+
+function resetQuiz(){
+ document.getElementById("quiz").reset();
+ document.getElementById("result").style.display="none";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+</body>
+</html>
