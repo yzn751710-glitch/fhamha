@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اختبار الكيمياء | افهمها</title>
+<style>
+body{font-family:Tahoma,Arial,sans-serif;background:#f1f5fb;color:#172033;margin:0;line-height:1.8}
+header{background:linear-gradient(135deg,#14532d,#16a34a);color:white;text-align:center;padding:25px 12px}
+main{max-width:760px;margin:20px auto;padding:12px}
+.card,.question{background:white;border-radius:14px;padding:18px;margin-bottom:15px;box-shadow:0 3px 12px #0000000b}
+.question h3{font-size:18px;margin-top:0}
+label{display:block;padding:9px;margin:7px 0;border:1px solid #dce4f0;border-radius:9px;cursor:pointer}
+label:hover{background:#eefbf2}
+input{margin-left:8px;accent-color:#16a34a}
+button{background:#15803d;color:white;border:0;border-radius:10px;padding:12px 20px;font-size:16px;cursor:pointer;margin:5px}
+#result{display:none}
+.good{color:#138052;font-weight:bold}
+.bad{color:#c22;font-weight:bold}
+.explain{color:#58657a;font-size:14px}
+</style>
+</head>
+<body>
+<header>
+<h1>🧪 اختبار الكيمياء</h1>
+<p>افهمها | الصف العاشر | الفصل الدراسي الأول</p>
+</header>
+<main>
+<section class="card">
+<h2>مرحبًا بك في مختبر المعرفة! 🔬</h2>
+<p>أجب عن الأسئلة العشرة، ثم اضغط «تصحيح الاختبار» لمعرفة نتيجتك وشرح الإجابات.</p>
+<p class="explain">هذا اختبار تدريبي عام في الكيمياء، وليس تأكيدًا لمطابقة جميع موضوعات كتاب الفصل الأول العُماني الحالي. راجع فهرس كتابك وخطة معلمك.</p>
+</section>
+<form id="quiz">
+<div id="questions"></div>
+<button type="submit">تصحيح الاختبار</button>
+<button type="button" onclick="resetQuiz()">إعادة المحاولة</button>
+</form>
+<section class="card" id="result">
+<h2>نتيجتك 🎉</h2>
+<h2 id="score"></h2>
+<p id="message"></p>
+<div id="review"></div>
+</section>
+</main>
+<script>
+const questions = [
+{q:"1. ما أصغر وحدة تحتفظ بخواص العنصر الكيميائي؟",a:["الجزيء دائمًا","الذرة","الخلية","المركب"],c:1,e:"الذرة هي أصغر وحدة من العنصر تحتفظ بخواصه الكيميائية."},
+{q:"2. ما الجسيم الذي يحمل شحنة كهربائية سالبة؟",a:["البروتون","النيوترون","الإلكترون","النواة"],c:2,e:"الإلكترون جسيم سالب الشحنة يوجد حول نواة الذرة."},
+{q:"3. أين توجد البروتونات والنيوترونات في الذرة؟",a:["في النواة","في الغلاف الخارجي فقط","خارج الذرة","داخل الإلكترون"],c:0,e:"توجد البروتونات والنيوترونات في نواة الذرة."},
+{q:"4. ما رمز عنصر الأكسجين الكيميائي؟",a:["Ox","O","Og","Os"],c:1,e:"الرمز الكيميائي للأكسجين هو O."},
+{q:"5. أي مما يأتي يُعد مركبًا كيميائيًا؟",a:["الحديد النقي","الأكسجين","الماء","الذهب النقي"],c:2,e:"الماء مركب يتكون من عنصري الهيدروجين والأكسجين."},
+{q:"6. ما الصيغة الكيميائية للماء؟",a:["CO₂","NaCl","H₂O","O₂"],c:2,e:"تتكون جزيئات الماء من ذرتي هيدروجين وذرة أكسجين."},
+{q:"7. أي مما يأتي مثال على تغير كيميائي؟",a:["انصهار الثلج","تقطيع الورق","صدأ الحديد","تبخر الماء"],c:2,e:"صدأ الحديد ينتج عنه مواد جديدة، لذا فهو تغير كيميائي."},
+{q:"8. ما الطريقة المناسبة لفصل الرمل عن الماء؟",a:["الترشيح","المغنطة دائمًا","التجميد فقط","إضافة الرمل"],c:0,e:"يُستخدم الترشيح لفصل مادة صلبة غير ذائبة مثل الرمل عن الماء."},
+{q:"9. ماذا يُسمى تحول المادة من الحالة الصلبة إلى السائلة؟",a:["التكاثف","التجمد","الانصهار","التسامي"],c:2,e:"الانصهار هو تحول المادة من الحالة الصلبة إلى السائلة."},
+{q:"10. ما العدد الذري للعنصر؟",a:["عدد النيوترونات فقط","عدد البروتونات في النواة","عدد مستويات الطاقة دائمًا","مجموع الكتل فقط"],c:1,e:"العدد الذري يساوي عدد البروتونات في نواة الذرة."}
+];
+const holder=document.getElementById("questions");
+questions.forEach((item,i)=>{
+ const section=document.createElement("section");section.className="question";
+ const title=document.createElement("h3");title.textContent=item.q;section.appendChild(title);
+ item.a.forEach((answer,j)=>{
+  const label=document.createElement("label");
+  const radio=document.createElement("input");radio.type="radio";radio.name="q"+i;radio.value=j;
+  const span=document.createElement("span");span.textContent=answer;
+  label.append(radio,span);section.appendChild(label);
+ });
+ holder.appendChild(section);
+});
+document.getElementById("quiz").addEventListener("submit",function(event){
+ event.preventDefault();let score=0;
+ const review=document.getElementById("review");review.innerHTML="";
+ questions.forEach((item,i)=>{
+  const selected=document.querySelector('input[name="q'+i+'"]:checked');
+  const correct=selected && Number(selected.value)===item.c;
+  if(correct)score++;
+  const block=document.createElement("div");block.className="card";
+  const status=document.createElement("p");status.className=correct?"good":"bad";
+  status.textContent=correct?"✓ إجابة صحيحة":"✗ إجابة غير صحيحة";
+  const answer=document.createElement("p");answer.textContent="الإجابة الصحيحة: "+item.a[item.c];
+  const explain=document.createElement("p");explain.className="explain";explain.textContent=item.e;
+  block.append(status,answer,explain);review.appendChild(block);
+ });
+ document.getElementById("score").textContent=score+" من "+questions.length;
+ document.getElementById("message").textContent=score>=8?"ممتاز! أحسنت 👏":score>=5?"جيد! راجع الشرح وحاول مجددًا 💪":"واصل التدرّب، فكل محاولة تعلّمك شيئًا جديدًا 🌱";
+ document.getElementById("result").style.display="block";
+ document.getElementById("result").scrollIntoView({behavior:"smooth"});
+});
+function resetQuiz(){
+ document.getElementById("quiz").reset();
+ document.getElementById("result").style.display="none";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+</body>
+</html>
