@@ -47,7 +47,50 @@ footer{background:var(--navy);color:#dbe7ff;text-align:center;padding:25px 18px}
 <article class="card"><div class="icon">⚡</div><h3>الفيزياء والعلوم</h3><p>فهم القوانين والمفاهيم العلمية بلغة سهلة وأمثلة من الحياة.</p><a href="#contact">اقترح موضوعًا ←</a></article>
 <article class="card"><div class="icon">📝</div><h3>العربية والإنجليزية</h3><p>قواعد ومفردات وتدريبات تساعدك على التدرّب خطوة بخطوة.</p><a href="#contact">اطلب تدريبًا ←</a></article>
 </div></section>
-<section id="tools" class="tools"><div class="toolbox"><h2>🧮 حاسبة النسبة المئوية</h2><p>أدخل الدرجة التي حصلت عليها والدرجة الكاملة.</p><label for="score">درجتك</label><input id="score" type="number" min="0" placeholder="مثال: 42"><label for="total">الدرجة الكاملة</label><input id="total" type="number" min="1" placeholder="مثال: 50"><button onclick="calcPercent()">احسب النسبة</button><div id="percentResult" class="result" aria-live="polite">ستظهر النتيجة هنا.</div></div>
+
+<section id="summaries" style="margin:25px 0">
+  <div class="section-title">
+    <h2>📚 ملخصات المناهج العُمانية</h2>
+    <p>ملخصات مبسطة تساعدك على المراجعة</p>
+  </div>
+
+  <div class="grid">
+    <article class="card">
+      <h3>➗ الرياضيات — الصف العاشر</h3>
+      <p>مثال محلول على المعادلات:</p>
+      <details>
+        <summary>اضغط لعرض الحل</summary>
+        <p>س + 5 = 12</p>
+        <p>نطرح 5 من الطرفين:</p>
+        <p><strong>س = 12 − 5 = 7</strong></p>
+        <p>التحقق: 7 + 5 = 12 ✓</p>
+      </details>
+    </article>
+
+    <article class="card">
+      <h3>🔬 العلوم والفيزياء</h3>
+      <p>خطوات حل المسائل العلمية:</p>
+      <details>
+        <summary>اضغط لعرض الخطوات</summary>
+        <p>1. اكتب المعطيات.</p>
+        <p>2. حدّد المطلوب.</p>
+        <p>3. اختر القانون المناسب.</p>
+        <p>4. عوّض بالأرقام واكتب الوحدة.</p>
+      </details>
+    </article>
+
+    <article class="card">
+      <h3>📝 اللغة العربية والإنجليزية</h3>
+      <p>طريقة بسيطة لمراجعة القواعد.</p>
+      <details>
+        <summary>اضغط لعرض الطريقة</summary>
+        <p>اقرأ القاعدة، وافهم مثالًا، ثم حل سؤالًا بنفسك.</p>
+      </details>
+    </article>
+  </div>
+</section>
+
+ <section id="tools" class="tools"><div class="toolbox"><h2>🧮 حاسبة النسبة المئوية</h2><p>أدخل الدرجة التي حصلت عليها والدرجة الكاملة.</p><label for="score">درجتك</label><input id="score" type="number" min="0" placeholder="مثال: 42"><label for="total">الدرجة الكاملة</label><input id="total" type="number" min="1" placeholder="مثال: 50"><button onclick="calcPercent()">احسب النسبة</button><div id="percentResult" class="result" aria-live="polite">ستظهر النتيجة هنا.</div></div>
 <div class="toolbox"><h2>⏱️ مؤقت المذاكرة</h2><p>ابدأ بجلسة قصيرة، وابتعد عن المشتتات.</p><label for="minutes">مدة الجلسة بالدقائق</label><input id="minutes" type="number" min="1" max="180" value="25"><div id="timer" class="result" aria-live="polite">25:00</div><button onclick="startTimer()">ابدأ المؤقت</button> <button onclick="stopTimer()" style="background:#64748b">إيقاف</button></div></section>
 <div class="notice" id="about"><strong>عن افهمها:</strong> هذا الموقع في بدايته، وهدفه تقديم محتوى تعليمي عربي واضح ومفيد. نراجع المحتوى ونضيف دروسًا جديدة تدريجيًا.</div>
 <section id="contact" style="margin-top:35px"><div class="section-title"><h2>ماذا تريد أن نضيف؟</h2></div><div class="card"><p>اختر درسًا أو أداة تتمنى وجودها في «افهمها». يمكنك إرسال اقتراحك إلى صاحب الموقع بعد إضافة وسيلة تواصل مناسبة.</p><p><strong>اقتراح:</strong> ابدأ بمادة واحدة وصف دراسي واحد حتى يكون المحتوى دقيقًا ومفيدًا.</p></div></section>
