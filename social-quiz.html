@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اختبار الدراسات الاجتماعية | افهمها</title>
+<style>
+body{font-family:Tahoma,Arial,sans-serif;background:#f1f5fb;color:#172033;margin:0;line-height:1.8}
+header{background:linear-gradient(135deg,#1e3a8a,#0891b2);color:white;text-align:center;padding:25px 12px}
+main{max-width:760px;margin:20px auto;padding:12px}
+.card,.question{background:white;border-radius:14px;padding:18px;margin-bottom:15px;box-shadow:0 3px 12px #0000000b}
+.question h3{font-size:18px;margin-top:0}
+label{display:block;padding:9px;margin:7px 0;border:1px solid #dce4f0;border-radius:9px;cursor:pointer}
+label:hover{background:#eff6ff}
+input{margin-left:8px;accent-color:#0891b2}
+button{background:#087f8c;color:white;border:0;border-radius:10px;padding:12px 20px;font-size:16px;cursor:pointer;margin:5px}
+#result{display:none}
+.good{color:#138052;font-weight:bold}
+.bad{color:#c22;font-weight:bold}
+.explain{color:#58657a;font-size:14px}
+</style>
+</head>
+<body>
+<header>
+<h1>🌍 اختبار الدراسات الاجتماعية</h1>
+<p>افهمها | الصف العاشر | الفصل الدراسي الأول</p>
+</header>
+<main>
+<section class="card">
+<h2>أهلًا بك في رحلة المعرفة!</h2>
+<p>أجب عن الأسئلة العشرة، ثم اضغط «تصحيح الاختبار» لتعرف نتيجتك وتراجع الإجابات.</p>
+<p class="explain">هذا تدريب عام في الجغرافيا والمواطنة والبيئة، وليس تأكيدًا لمطابقة جميع موضوعات كتاب سلطنة عُمان الحالي. راجع كتابك المدرسي لتحديد موضوعات الفصل.</p>
+</section>
+<form id="quiz">
+<div id="questions"></div>
+<button type="submit">تصحيح الاختبار</button>
+<button type="button" onclick="resetQuiz()">إعادة المحاولة</button>
+</form>
+<section class="card" id="result">
+<h2>نتيجتك 🎉</h2>
+<h2 id="score"></h2>
+<p id="message"></p>
+<div id="review"></div>
+</section>
+</main>
+<script>
+const questions=[
+{q:"1. ما عاصمة سلطنة عُمان؟",a:["صلالة","مسقط","نزوى","صحار"],c:1,e:"مسقط هي عاصمة سلطنة عُمان."},
+{q:"2. ما المسطح المائي الذي تطل عليه عُمان من جهة الشمال الشرقي؟",a:["البحر المتوسط","المحيط الأطلسي","خليج عُمان","البحر الأسود"],c:2,e:"تقع سواحل خليج عُمان على الجانب الشمالي الشرقي من البلاد."},
+{q:"3. ما الأداة التي تُستخدم لتحديد المواقع والاتجاهات على سطح الأرض؟",a:["الخريطة","الميزان","المجهر","المحرار فقط"],c:0,e:"تساعد الخرائط على تحديد المواقع وفهم توزيع الظواهر الجغرافية."},
+{q:"4. ماذا يعني ترشيد استهلاك المياه؟",a:["ترك الصنابير مفتوحة","استخدام المياه باعتدال وتجنب هدرها","تلويث مصادر المياه","استهلاك المياه دون حاجة"],c:1,e:"ترشيد الاستهلاك يعني استخدام المياه بكفاءة والمحافظة عليها."},
+{q:"5. أي مما يأتي يُعد موردًا طبيعيًا متجددًا؟",a:["الفحم","النفط","ضوء الشمس","الغاز الطبيعي"],c:2,e:"تتجدد الطاقة الشمسية باستمرار، بخلاف الوقود الأحفوري الذي يحتاج إلى فترات طويلة جدًا لتكوّنه."},
+{q:"6. ما التصرف الذي يعبر عن المواطنة المسؤولة؟",a:["تخريب الممتلكات العامة","احترام القوانين والمحافظة على الممتلكات العامة","إلقاء النفايات في الشوارع","إهمال حقوق الآخرين"],c:1,e:"تتضمن المواطنة المسؤولة احترام القوانين والمشاركة الإيجابية والمحافظة على الممتلكات العامة."},
+{q:"7. لماذا تُعد المحافظة على الآثار مهمة؟",a:["لإتلافها","لأنها توثق التاريخ والتراث","لمنع معرفة الماضي","لإهمال التراث"],c:1,e:"تساعد الآثار على فهم تاريخ المجتمعات وحماية هويتها الثقافية."},
+{q:"8. ما المقصود بالتلوث البيئي؟",a:["حماية الموارد الطبيعية","إدخال مواد أو عوامل ضارة إلى البيئة","زراعة الأشجار فقط","تنظيف الشواطئ"],c:1,e:"يحدث التلوث عندما تؤدي مواد أو عوامل ضارة إلى التأثير سلبًا في البيئة."},
+{q:"9. أي وسيلة تساعد على تقليل النفايات؟",a:["رمي كل شيء في الشارع","إعادة الاستخدام والتدوير","حرق النفايات عشوائيًا","زيادة استخدام المواد ذات الاستخدام الواحد"],c:1,e:"يساعد إعادة الاستخدام والتدوير على تقليل النفايات واستهلاك الموارد."},
+{q:"10. ما فائدة العمل التطوعي للمجتمع؟",a:["تعزيز التعاون وخدمة المجتمع","نشر الخلافات","إهدار الموارد عمدًا","منع مساعدة الآخرين"],c:0,e:"يعزز العمل التطوعي التعاون والتكافل ويسهم في تلبية احتياجات المجتمع."}
+];
+const holder=document.getElementById("questions");
+questions.forEach((item,i)=>{
+ const section=document.createElement("section");section.className="question";
+ const title=document.createElement("h3");title.textContent=item.q;section.appendChild(title);
+ item.a.forEach((answer,j)=>{
+  const label=document.createElement("label");
+  const radio=document.createElement("input");radio.type="radio";radio.name="q"+i;radio.value=j;
+  const span=document.createElement("span");span.textContent=answer;
+  label.append(radio,span);section.appendChild(label);
+ });
+ holder.appendChild(section);
+});
+document.getElementById("quiz").addEventListener("submit",function(event){
+ event.preventDefault();let score=0;
+ const review=document.getElementById("review");review.innerHTML="";
+ questions.forEach((item,i)=>{
+  const selected=document.querySelector('input[name="q'+i+'"]:checked');
+  const correct=selected && Number(selected.value)===item.c;
+  if(correct)score++;
+  const block=document.createElement("div");block.className="card";
+  const status=document.createElement("p");status.className=correct?"good":"bad";
+  status.textContent=correct?"✓ إجابة صحيحة":"✗ إجابة غير صحيحة";
+  const answer=document.createElement("p");answer.textContent="الإجابة الصحيحة: "+item.a[item.c];
+  const explain=document.createElement("p");explain.className="explain";explain.textContent=item.e;
+  block.append(status,answer,explain);review.appendChild(block);
+ });
+ document.getElementById("score").textContent=score+" من "+questions.length;
+ document.getElementById("message").textContent=score>=8?"ممتاز! أحسنت 👏":score>=5?"أداء جيد! راجع الشرح وحاول مجددًا 💪":"واصل التدريب، وستتحسن بالمراجعة والمحاولة 🌱";
+ document.getElementById("result").style.display="block";
+ document.getElementById("result").scrollIntoView({behavior:"smooth"});
+});
+function resetQuiz(){
+ document.getElementById("quiz").reset();
+ document.getElementById("result").style.display="none";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+</body>
+</html>
