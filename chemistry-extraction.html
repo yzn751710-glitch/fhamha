@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>افهمها | استخلاص الفلزات واستخداماتها</title>
+<style>
+:root {
+  --bg:#f4f7fb; --card:#ffffff; --text:#172033;
+  --muted:#64748b; --blue:#2563eb; --green:#059669;
+  --border:#e2e8f0;
+}
+* {box-sizing:border-box}
+body {
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:Tahoma,Arial,sans-serif; line-height:1.9;
+}
+header {
+  padding:32px 18px; color:white; text-align:center;
+  background:linear-gradient(135deg,#0f766e,#2563eb);
+}
+header h1 {margin:0;font-size:clamp(25px,5vw,38px)}
+header p {margin:8px 0 0}
+.container {max-width:1000px;margin:auto;padding:18px}
+.card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:18px; padding:20px; margin:18px 0;
+  box-shadow:0 5px 18px #0f172a0b;
+}
+h2 {color:#0f766e;margin-top:0}
+h3 {color:#1d4ed8}
+nav {display:flex;flex-wrap:wrap;gap:9px;margin:15px 0}
+nav a {
+  text-decoration:none;background:white;color:#1d4ed8;
+  border:1px solid var(--border);border-radius:10px;
+  padding:8px 12px;font-size:14px;
+}
+.tip {
+  background:#ecfdf5;border-right:4px solid #10b981;
+  padding:12px;border-radius:8px;margin:12px 0;
+}
+.warning {
+  background:#fff7ed;border-right:4px solid #f97316;
+  padding:12px;border-radius:8px;margin:12px 0;
+}
+.diagram {
+  background:#f8fafc;border:1px dashed #94a3b8;
+  border-radius:14px;padding:15px;text-align:center;margin:14px 0;
+}
+.flow {display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap}
+.flow span {background:#dbeafe;padding:10px 14px;border-radius:10px;font-weight:bold}
+.flow b {color:#0f766e;font-size:22px}
+details {
+  border:1px solid var(--border);border-radius:10px;
+  padding:12px;margin:10px 0;background:#fff;
+}
+summary {cursor:pointer;font-weight:bold;color:#1d4ed8}
+button {
+  border:0;background:#2563eb;color:white;border-radius:10px;
+  padding:11px 17px;font:inherit;cursor:pointer;
+}
+button:hover {background:#1d4ed8}
+.option {
+  display:block;width:100%;text-align:right;margin:8px 0;
+  background:#f1f5f9;color:#172033;border:1px solid #cbd5e1;
+}
+.option:hover {background:#dbeafe}
+.correct {background:#dcfce7!important;border-color:#16a34a!important}
+.wrong {background:#fee2e2!important;border-color:#dc2626!important}
+#result {font-weight:bold;margin-top:15px}
+footer {text-align:center;padding:25px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🧪 استخلاص الفلزات واستخداماتها</h1>
+  <p>منصة افهمها | الكيمياء | الصف العاشر</p>
+  <p>افهم الفكرة، شاهد الرسم، ثم اختبر نفسك!</p>
+</header>
+
+<main class="container">
+
+  <section class="card">
+    <h2>📚 محتويات الصفحة</h2>
+    <nav>
+      <a href="#intro">مقدمة</a>
+      <a href="#extraction">استخلاص الفلزات</a>
+      <a href="#iron">الحديد والفولاذ</a>
+      <a href="#alloys">السبائك</a>
+      <a href="#corrosion">التآكل والحماية</a>
+      <a href="#quiz">الاختبار</a>
+    </nav>
+    <div class="tip">
+      <b>هدفنا:</b> معرفة كيف نحصل على الفلزات من خاماتها،
+      ولماذا نستخدم الفولاذ والسبائك، وكيف نحمي الحديد من الصدأ.
+    </div>
+  </section>
+
+  <section class="card" id="intro">
+    <h2>1. مقدمة: من أين تأتي الفلزات؟</h2>
+    توجد كثير من الفلزات في الطبيعة ضمن مركبات تسمى خامات.
+    وقد تحتوي الخامات على أكاسيد الفلزات أو مركبات أخرى.
+    نفصل الفلز عن مركبه بعملية كيميائية مناسبة.
+
+    <div class="diagram">
+      <svg viewBox="0 0 340 135" width="100%" role="img" aria-label="رسم يوضح تحويل الخام إلى فلز">
+        <rect x="8" y="28" width="90" height="70" rx="12" fill="#d6d3d1"/>
+        <path d="M24 70 L42 43 L60 75 L78 48" stroke="#78716c" stroke-width="7" fill="none"/>
+        <path d="M105 63 H135" stroke="#0f766e" stroke-width="3"/>
+        <path d="M128 56 L137 63 L128 70" stroke="#0f766e" stroke-width="3" fill="none"/>
+        <rect x="145" y="28" width="80" height="70" rx="12" fill="#fef3c7"/>
+        <path d="M163 48 L180 40 L198 49 L196 72 L180 82 L163 72 Z" fill="#f59e0b"/>
+        <path d="M233 63 H260" stroke="#0f766e" stroke-width="3"/>
+        <path d="M253 56 L262 63 L253 70" stroke="#0f766e" stroke-width="3" fill="none"/>
+        <rect x="270" y="28" width="62" height="70" rx="12" fill="#bfdbfe"/>
+        <rect x="284" y="46" width="34" height="35" rx="5" fill="#64748b"/>
+        <text x="53" y="119" text-anchor="middle" font-size="12" fill="currentColor">خام</text>
+        <text x="185" y="119" text-anchor="middle" font-size="12" fill="currentColor">معالجة</text>
+        <text x="301" y="119" text-anchor="middle" font-size="12" fill="currentColor">فلز</text>
+      </svg>
+      <p>خام مناسب ← معالجة كيميائية ← فلز</p>
+    </div>
+
+    <div class="warning">
+      ليس كل خام صالحًا اقتصاديًا للاستخلاص؛ فذلك يعتمد على كمية الفلز
+      وتكلفة الاستخلاص والطاقة والآثار البيئية.
+    </div>
+  </section>
+
+  <section class="card" id="extraction">
+    <h2>2. استخلاص الفلزات</h2>
+    <p>
+      يعتمد أسلوب الاستخلاص على مدى نشاط الفلز. فالفلزات شديدة النشاط
+      يصعب استخلاصها من مركباتها باستخدام الكربون، ولذلك تُستخدم
+      غالبًا عملية التحليل الكهربائي لمركباتها المناسبة.
+    </p>
+
+    <h3>أ. استخلاص فلز باستخدام الكربون</h3>
+    يمكن استخدام الكربون لاستخلاص بعض الفلزات الأقل نشاطًا منه،
+    مثل الحديد من أكسيده في الفرن العالي.
+    يعمل أول أكسيد الكربون عاملًا مختزلًا في تفاعلات مهمة داخل الفرن.
+
+    <div class="diagram">
+      <svg viewBox="0 0 300 210" width="100%" role="img" aria-label="رسم مبسط لفرن استخلاص الحديد">
+        <path d="M90 15 H210 L226 48 L210 90 L225 139 L205 185 H95 L75 139 L90 90 L74 48 Z"
+          fill="#fed7aa" stroke="#9a3412" stroke-width="3"/>
+        <path d="M101 29 H199 L211 53 L198 83 H102 L89 53 Z" fill="#b45309"/>
+        <path d="M102 91 H198 L207 128 H93 Z" fill="#f59e0b"/>
+        <path d="M94 136 H206 L195 174 H105 Z" fill="#64748b"/>
+        <path d="M112 183 H188 L181 195 H119 Z" fill="#ef4444"/>
+        <text x="150" y="53" text-anchor="middle" font-size="12" fill="white">خام الحديد</text>
+        <text x="150" y="112" text-anchor="middle" font-size="12" fill="#422006">منطقة التفاعل</text>
+        <text x="150" y="158" text-anchor="middle" font-size="12" fill="white">حديد منصهر</text>
+      </svg>
+      <p>رسم تخطيطي مبسط، وليس رسمًا هندسيًا دقيقًا للفرن العالي.</p>
+    </div>
+
+    <div class="tip">
+      تذكّر: الاختزال يعني إزالة الأكسجين من المركب، أو اكتساب الإلكترونات
+      في تفاعلات الأكسدة والاختزال.
+    </div>
+
+    <h3>ب. استخلاص الفلزات شديدة النشاط</h3>
+    تُستخلص فلزات مثل الألومنيوم من مركباتها بوساطة التحليل الكهربائي.
+    تحتاج هذه العملية إلى طاقة كهربائية كبيرة.
+
+    <div class="diagram">
+      <div class="flow">
+        <span>مركب فلزي مناسب</span><b>←</b>
+        <span>تحليل كهربائي</span><b>←</b>
+        <span>فلز</span>
+      </div>
+    </div>
+
+    <details>
+      <summary>سؤال: لماذا لا يكفي الكربون لاستخلاص جميع الفلزات؟</summary>
+      لأن بعض الفلزات أكثر نشاطًا من الكربون، لذلك لا يستطيع الكربون
+      اختزال مركباتها بالطريقة المعتادة.
+    </details>
+  </section>
+
+  <section class="card" id="iron">
+    <h2>3. إنتاج الحديد والفولاذ</h2>
+    <h3>ما الحديد الخام؟</h3>
+    يستخلص الحديد من خاماته في الفرن العالي. ومن المواد المستخدمة
+    خام الحديد والكوك والحجر الجيري والهواء الساخن.
+
+    <h3>وظائف المواد في الفرن العالي</h3>
+    <ul>
+      <li><b>خام الحديد:</b> مصدر الحديد.</li>
+      <li><b>الكوك:</b> مصدر للطاقة ويسهم في تكوين أول أكسيد الكربون.</li>
+      <li><b>الحجر الجيري:</b> يساعد على إزالة الشوائب وتكوين الخبث.</li>
+      <li><b>الهواء الساخن:</b> يساعد على احتراق الكوك.</li>
+    </ul>
+
+    <h3>ما الفولاذ؟</h3>
+    الفولاذ سبيكة أساسها الحديد والكربون، ويمكن أن تضاف إليها عناصر
+    أخرى لتغيير خواصها. ويُستخدم في المباني والجسور والسيارات والأدوات.
+
+    <div class="tip">
+      يحتوي الحديد الناتج من الفرن العالي عادةً على نسبة كربون أعلى من
+      الفولاذ، ولذلك تتم معالجته لضبط نسبة الكربون والخواص المطلوبة.
+    </div>
+
+    <details>
+      <summary>سؤال: ما وظيفة الحجر الجيري؟</summary>
+      يساعد على إزالة بعض الشوائب؛ إذ يتحلل بالحرارة مكوّنًا أكسيد
+      الكالسيوم الذي يتفاعل مع شوائب مثل السيليكا لتكوين الخبث.
+    </details>
+  </section>
+
+  <section class="card" id="alloys">
+    <h2>4. السبائك</h2>
+    <p>
+      السبيكة خليط يحتوي على فلز مع عنصر أو أكثر. وتُصنع السبائك
+      للحصول على خواص أفضل من خواص الفلز النقي في استخدامات معينة.
+    </p>
+
+    <div class="diagram">
+      <svg viewBox="0 0 320 145" width="100%" role="img" aria-label="مقارنة ترتيب الذرات في فلز نقي وسبيكة">
+        <text x="82" y="20" text-anchor="middle" font-size="13" fill="currentColor">فلز نقي</text>
+        <text x="238" y="20" text-anchor="middle" font-size="13" fill="currentColor">سبيكة</text>
+        {#not-a-real-svg}
+        <g fill="#60a5fa" stroke="#1d4ed8" stroke-width="1">
+          <circle cx="35" cy="48" r="9"/><circle cx="58" cy="48" r="9"/><circle cx="81" cy="48" r="9"/><circle cx="104" cy="48" r="9"/><circle cx="127" cy="48" r="9"/>
+          <circle cx="35" cy="72" r="9"/><circle cx="58" cy="72" r="9"/><circle cx="81" cy="72" r="9"/><circle cx="104" cy="72" r="9"/><circle cx="127" cy="72" r="9"/>
+          <circle cx="35" cy="96" r="9"/><circle cx="58" cy="96" r="9"/><circle cx="81" cy="96" r="9"/><circle cx="104" cy="96" r="9"/><circle cx="127" cy="96" r="9"/>
+        </g>
+        <g fill="#60a5fa" stroke="#1d4ed8" stroke-width="1">
+          <circle cx="185" cy="48" r="9"/><circle cx="208" cy="48" r="9"/><circle cx="231" cy="48" r="9"/><circle cx="254" cy="48" r="9"/><circle cx="277" cy="48" r="9"/>
+          <circle cx="185" cy="72" r="9"/><circle cx="208" cy="72" r="9"/><circle cx="231" cy="72" r="9"/><circle cx="254" cy="72" r="9"/><circle cx="277" cy="72" r="9"/>
+          <circle cx="185" cy="96" r="9"/><circle cx="208" cy="96" r="9"/><circle cx="231" cy="96" r="9"/><circle cx="254" cy="96" r="9"/><circle cx="277" cy="96" r="9"/>
+        </g>
+        <g fill="#f97316" stroke="#c2410c">
+          <circle cx="208" cy="48" r="6"/><circle cx="254" cy="72" r="6"/><circle cx="185" cy="96" r="6"/>
+        </g>
+      </svg>
+      <p>رسم توضيحي مبسط: قد تؤدي ذرات مختلفة الأحجام إلى تغيير ترتيب الطبقات.</p>
+    </div>
+
+    <h3>أمثلة</h3>
+    <ul>
+      <li><b>الفولاذ:</b> الحديد والكربون.</li>
+      <li><b>النحاس الأصفر:</b> النحاس والزنك.</li>
+      <li><b>البرونز:</b> النحاس والقصدير في صورته التقليدية.</li>
+    </ul>
+
+    <details>
+      <summary>سؤال: لماذا قد تكون السبيكة أصلب من الفلز النقي؟</summary>
+      قد تعوق الذرات المختلفة انزلاق طبقات الذرات بعضها فوق بعض،
+      فتزداد صلابة بعض السبائك.
+    </details>
+  </section>
+
+  <section class="card" id="corrosion">
+    <h2>5. تآكل الفلزات وحمايتها</h2>
+    <p>
+      التآكل عملية تتفاعل فيها الفلزات مع البيئة المحيطة بها.
+      ومن أمثلتها صدأ الحديد عند وجود الماء والأكسجين.
+    </p>
+
+    <h3>كيف نحمي الحديد؟</h3>
+    <ul>
+      <li><b>الطلاء:</b> يشكل حاجزًا يمنع وصول الماء والأكسجين.</li>
+      <li><b>التزييت:</b> يقلل تعرض السطح للبيئة.</li>
+      <li><b>الجلفنة:</b> تغطية الحديد بالزنك.</li>
+      <li><b>الحماية بالتضحية:</b> استخدام فلز أنشط من الحديد ليتأكسد بدلًا منه في الظروف المناسبة.</li>
+    </ul>
+
+    <div class="diagram">
+      <div class="flow">
+        <span>حديد</span><b>+</b><span>ماء</span><b>+</b><span>أكسجين</span>
+      </div>
+      <p>تتوافر الظروف المناسبة ← يحدث الصدأ تدريجيًا.</p>
+    </div>
+
+    <details>
+      <summary>سؤال: لماذا تحمي الجلفنة الحديد؟</summary>
+      لأن طبقة الزنك تعمل حاجزًا، كما يمكن للزنك أن يتأكسد بدلًا من
+      الحديد عند تعرض المعدن للخدش، في ظروف الحماية المناسبة.
+    </details>
+  </section>
+
+  <section class="card" id="quiz">
+    <h2>🎯 اختبر فهمك</h2>
+    <p>أجب عن الأسئلة الستة، ثم اضغط «اعرض النتيجة».</p>
+    <div id="questions"></div>
+    <button onclick="checkQuiz()">اعرض النتيجة</button>
+    <button onclick="resetQuiz()" style="background:#64748b">إعادة الاختبار</button>
+    <p id="result" aria-live="polite"></p>
+  </section>
+
+  <section class="card">
+    <h2>📝 ملخص سريع للحفظ</h2>
+    <ul>
+      <li>طريقة استخلاص الفلز تعتمد على نشاطه.</li>
+      <li>يستخدم الكربون في استخلاص بعض الفلزات الأقل نشاطًا منه.</li>
+      <li>تحتاج فلزات شديدة النشاط إلى طرق مثل التحليل الكهربائي.</li>
+      <li>الفولاذ سبيكة أساسها الحديد والكربون.</li>
+      <li>قد تحسن السبائك خواص الفلزات.</li>
+      <li>تساعد الجلفنة والطلاء وطرق الحماية الأخرى على الحد من التآكل.</li>
+    </ul>
+    <div class="warning">
+      هذه صفحة تعليمية أولية. راجع أسماء الدروس وترتيبها والمعادلات
+      المطلوبة مع فهرس كتابك المدرسي قبل اعتمادها باعتبارها تغطية كاملة للوحدة.
+    </div>
+  </section>
+
+</main>
+
+<footer>افهمها © 2026 — تعلّم خطوة بخطوة 🌟</footer>
+
+<script>
+const questions = [
+  {
+    q:"ما العامل الذي يحدد طريقة استخلاص الفلز غالبًا؟",
+    a:["لون الخام","مدى نشاط الفلز","حجم قطعة الفلز"],
+    correct:1,
+    explain:"تعتمد الطريقة على نشاط الفلز ومدى ثبات مركباته."
+  },
+  {
+    q:"أي مادة تساعد على استخلاص الحديد في الفرن العالي؟",
+    a:["الكربون ومركباته المختزلة","الماء البارد فقط","الملح فقط"],
+    correct:0,
+    explain:"يسهم الكوك في تكوين أول أكسيد الكربون الذي يختزل أكسيد الحديد."
+  },
+  {
+    q:"ما وظيفة الحجر الجيري في الفرن العالي؟",
+    a:["إضافة لون للحديد","المساعدة على إزالة الشوائب","تبريد الفرن"],
+    correct:1,
+    explain:"يساعد على تكوين الخبث الذي يحمل بعض الشوائب."
+  },
+  {
+    q:"الفولاذ سبيكة أساسها:",
+    a:["النحاس والزنك","الحديد والكربون","النحاس والقصدير"],
+    correct:1,
+    explain:"الفولاذ أساسه الحديد والكربون، وقد يحتوي على عناصر إضافية."
+  },
+  {
+    q:"أي مما يأتي مثال على الحماية من الصدأ؟",
+    a:["الجلفنة","زيادة تعرض الحديد للماء","إزالة الطلاء الواقي"],
+    correct:0,
+    explain:"الجلفنة تغطي الحديد بالزنك وتساعد على حمايته."
+  },
+  {
+    q:"لماذا تستخدم السبائك؟",
+    a:["لأنها دائمًا أخف من كل الفلزات","لتغيير الخواص وتحسينها حسب الاستخدام","لمنع كل التفاعلات الكيميائية"],
+    correct:1,
+    explain:"تُصمم السبائك للحصول على خواص تناسب تطبيقات معينة."
+  }
+];
+
+function renderQuiz() {
+  const root = document.getElementById("questions");
+  root.innerHTML = "";
+  questions.forEach((item, i) => {
+    const box = document.createElement("div");
+    box.className = "card";
+    box.style.boxShadow = "none";
+    box.innerHTML = "<h3>" + (i+1) + ". " + item.q + "</h3>";
+    item.a.forEach((answer, j) => {
+      const btn = document.createElement("button");
+      btn.className = "option";
+      btn.textContent = answer;
+      btn.type = "button";
+      btn.dataset.choice = j;
+      btn.onclick = () => {
+        box.querySelectorAll("button.option").forEach(b => {
+          b.classList.remove("correct","wrong");
+        });
+        box.dataset.answer = j;
+        btn.classList.add(j === item.correct ? "correct" : "wrong");
+      };
+      box.appendChild(btn);
+    });
+    const explanation = document.createElement("p");
+    explanation.textContent = "التفسير: " + item.explain;
+    explanation.hidden = true;
+    explanation.className = "tip";
+    box.appendChild(explanation);
+    box.dataset.index = i;
+    root.appendChild(box);
+  });
+}
+function checkQuiz() {
+  let score = 0;
+  const boxes = document.querySelectorAll("#questions .card");
+  boxes.forEach((box, i) => {
+    const answer = Number(box.dataset.answer);
+    if (box.dataset.answer !== undefined && answer === questions[i].correct) score++;
+    box.querySelector(".tip").hidden = false;
+  });
+  document.getElementById("result").textContent =
+    "نتيجتك: " + score + " من " + questions.length +
+    (score === questions.length ? " — ممتاز! 🎉" : " — راجع الإجابات والتفسيرات وحاول مجددًا.");
+}
+function resetQuiz() {
+  renderQuiz();
+  document.getElementById("result").textContent = "";
+}
+renderQuiz();
+</script>
+</body>
+</html>
