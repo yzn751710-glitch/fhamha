@@ -83,5 +83,129 @@ document.getElementById('quizResult').innerHTML='<strong>نتيجتك: '+score+'
 document.getElementById('resetQuiz').addEventListener('click',()=>{quizForm.reset();quizForm.querySelectorAll('.quiz-question').forEach(q=>{q.classList.remove('correct','incorrect');q.querySelector('.feedback').textContent='';});document.getElementById('quizResult').textContent='أجب عن الأسئلة ثم اضغط «صحّح إجاباتي».';});
 
 </script>
+
+<section id="linear-programming" dir="rtl" style="font-family:Arial,sans-serif;max-width:900px;margin:30px auto;padding:20px;color:#183153;line-height:1.9">
+
+  <div style="background:#e8f5e9;padding:20px;border-radius:14px">
+    <h2>📘 الوحدة الأولى: استخدام التمثيلات البيانية</h2>
+    <h3>الدرس 3-1: البرمجة الخطية</h3>
+    <p>في هذا الدرس نتعلم كيف نستخدم القيود والمتباينات لإيجاد أكبر قيمة أو أصغر قيمة ممكنة لعبارة جبرية.</p>
+  </div>
+
+  <h3>١. ما المقصود بالبرمجة الخطية؟</h3>
+  <p>هي طريقة لحل مسائل نبحث فيها عن أفضل نتيجة، مثل أكبر ربح أو أقل تكلفة، مع الالتزام بقيود محددة.</p>
+
+  <h3>٢. خطوات الحل</h3>
+  <ol>
+    <li>نحدد المتغيرين، مثل س و ص.</li>
+    <li>نكتب القيود على صورة متباينات.</li>
+    <li>نرسم المستقيمات ونحدد المنطقة التي تحقق جميع القيود.</li>
+    <li>نحدد إحداثيات رؤوس المنطقة.</li>
+    <li>نعوّض إحداثيات كل رأس في العبارة المطلوبة، ثم نختار أكبر قيمة أو أصغر قيمة.</li>
+  </ol>
+
+  <h3>٣. مثال محلول</h3>
+  <p>أوجد أكبر قيمة للعبارة: <strong>ق = ٢س + ٣ص</strong>، إذا كانت القيود:</p>
+  <div style="background:#f3f7fc;padding:14px;border-radius:10px;font-size:18px;text-align:center">
+    س ≥ ٠ ، ص ≥ ٠<br>
+    س + ص ≤ ٦<br>
+    ص ≤ ٤
+  </div>
+
+  <h4>الحل:</h4>
+  <p>بعد رسم القيود وتحديد المنطقة المشتركة، تكون رؤوس المنطقة:</p>
+  <ul>
+    <li>(٠ ، ٠)</li>
+    <li>(٦ ، ٠)</li>
+    <li>(٢ ، ٤)</li>
+    <li>(٠ ، ٤)</li>
+  </ul>
+
+  <h4>رسم توضيحي للمنطقة الممكنة</h4>
+  <svg viewBox="0 0 390 315" width="100%" role="img" aria-label="رسم يوضح المنطقة الممكنة للقيود س زائد ص أقل من أو يساوي 6 وص أقل من أو يساوي 4 في الربع الأول">
+    <defs>
+      <pattern id="lpgrid" width="50" height="50" patternUnits="userSpaceOnUse">
+        <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#d7e0eb" stroke-width="1"/>
+      </pattern>
+    </defs>
+    <rect x="40" y="60" width="300" height="200" fill="url(#lpgrid)"/>
+    <polygon points="40,260 340,260 140,60 40,60" fill="#8bd3a8" fill-opacity="0.65" stroke="#198754" stroke-width="2"/>
+    <line x1="40" y1="260" x2="355" y2="260" stroke="#183153" stroke-width="2"/>
+    <line x1="40" y1="275" x2="40" y2="42" stroke="#183153" stroke-width="2"/>
+    <path d="M350 254 L360 260 L350 266 M34 50 L40 40 L46 50" fill="none" stroke="#183153" stroke-width="2"/>
+    <line x1="140" y1="60" x2="340" y2="260" stroke="#2463a6" stroke-width="2" stroke-dasharray="5 4"/>
+    <g fill="#183153" font-size="12">
+      <text x="356" y="280">س</text>
+      <text x="22" y="42">ص</text>
+      <text x="35" y="280">٠</text>
+      <text x="136" y="280">٢</text>
+      <text x="236" y="280">٤</text>
+      <text x="336" y="280">٦</text>
+      <text x="20" y="165">٢</text>
+      <text x="20" y="65">٤</text>
+      <text x="48" y="52">(٠،٤)</text>
+      <text x="143" y="52">(٢،٤)</text>
+      <text x="286" y="250">(٦،٠)</text>
+    </g>
+  </svg>
+  <p style="font-size:14px;color:#526579">المنطقة الخضراء تمثل القيم التي تحقق القيود جميعها.</p>
+
+  <h4>نحسب قيمة ق عند كل رأس:</h4>
+  <div style="overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;text-align:center">
+      <tr style="background:#e8f5e9">
+        <th style="border:1px solid #ccd6e0;padding:8px">س</th>
+        <th style="border:1px solid #ccd6e0;padding:8px">ص</th>
+        <th style="border:1px solid #ccd6e0;padding:8px">ق = ٢س + ٣ص</th>
+      </tr>
+      <tr><td style="border:1px solid #ccd6e0;padding:8px">٠</td><td style="border:1px solid #ccd6e0;padding:8px">٠</td><td style="border:1px solid #ccd6e0;padding:8px">٠</td></tr>
+      <tr><td style="border:1px solid #ccd6e0;padding:8px">٦</td><td style="border:1px solid #ccd6e0;padding:8px">٠</td><td style="border:1px solid #ccd6e0;padding:8px">١٢</td></tr>
+      <tr><td style="border:1px solid #ccd6e0;padding:8px">٢</td><td style="border:1px solid #ccd6e0;padding:8px">٤</td><td style="border:1px solid #ccd6e0;padding:8px">١٢</td></tr>
+      <tr><td style="border:1px solid #ccd6e0;padding:8px">٠</td><td style="border:1px solid #ccd6e0;padding:8px">٤</td><td style="border:1px solid #ccd6e0;padding:8px">١٢</td></tr>
+    </table>
+  </div>
+
+  <p style="background:#e8f5e9;padding:12px;border-radius:10px"><strong>النتيجة:</strong> أكبر قيمة هي ١٢، وتتحقق عند الرؤوس (٦،٠) و(٢،٤) و(٠،٤).</p>
+
+  <hr style="border:0;border-top:1px solid #d7e0eb;margin:25px 0">
+
+  <h3>٤. اختبر فهمك</h3>
+  <div style="border:1px solid #d7e0eb;border-radius:12px;padding:16px;margin:12px 0">
+    <p><strong>السؤال ١:</strong> ما أول خطوة في حل مسألة البرمجة الخطية؟</p>
+    <label style="display:block"><input type="radio" name="lpq1" value="a"> اختيار أكبر عدد مباشرةً</label>
+    <label style="display:block"><input type="radio" name="lpq1" value="b"> تحديد المتغيرات والقيود</label>
+    <label style="display:block"><input type="radio" name="lpq1" value="c"> تجاهل المتباينات</label>
+  </div>
+
+  <div style="border:1px solid #d7e0eb;border-radius:12px;padding:16px;margin:12px 0">
+    <p><strong>السؤال ٢:</strong> إذا كانت ق = س + ٢ص، فما قيمة ق عند (س،ص) = (٣،٢)؟</p>
+    <label style="display:block"><input type="radio" name="lpq2" value="a"> ٥</label>
+    <label style="display:block"><input type="radio" name="lpq2" value="b"> ٧</label>
+    <label style="display:block"><input type="radio" name="lpq2" value="c"> ٨</label>
+  </div>
+
+  <button type="button" onclick="checkLPAnswers()" style="background:#176b45;color:white;border:0;padding:12px 20px;border-radius:8px;cursor:pointer;font-size:16px">تحقق من إجاباتي</button>
+  <p id="lpFeedback" aria-live="polite"></p>
+
+  <script>
+    function checkLPAnswers() {
+      let score = 0;
+      const answers = [
+        {name:"lpq1",correct:"b",explain:"السؤال الأول: نحدد المتغيرات والقيود أولًا."},
+        {name:"lpq2",correct:"b",explain:"السؤال الثاني: ٣ + ٢×٢ = ٧."}
+      ];
+      let details = [];
+      answers.forEach((q,i) => {
+        const selected = document.querySelector('input[name="'+q.name+'"]:checked');
+        if (selected && selected.value === q.correct) score++;
+        details.push((i+1)+". "+q.explain);
+      });
+      document.getElementById("lpFeedback").innerHTML =
+        "<strong>درجتك: "+score+" من "+answers.length+"</strong><br>"+details.join("<br>");
+    }
+  </script>
+
+</section>
+
 </body>
 </html>
